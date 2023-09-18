@@ -353,3 +353,70 @@ def gen_light_color_set_complementary(color, inColorType: str):
         "textLight" : textLightColor,
         "textDark" : textDarkColor
     }
+
+def gen_dark_color_set_analogous(color, inColorType: str, strength: float):
+    """returns a dictionary containing a whole color scheme \n
+    {\n
+    "primary", "secondary", "accent", "background", "textLight","textDark"\n
+    } keys."""        
+
+    color = get_HSV(color, inColorType)
+
+    textLightColor = ((color[0] + 0.5) % 1, 70, 255)
+    textDarkColor = ((color[0] + 0.5) % 1, 70, 50)
+
+    primaryColor = (
+        color[0],
+        ECMath.lerp(color[1], 128, 0.5),
+        ECMath.lerp(color[2], 255, 0.8)
+        )
+
+    while get_contrast(primaryColor, textDarkColor, "HSV") < 7:
+        #print("correction from : " + str(get_contrast(primaryColor, textDarkColor, "HSV")))
+        primaryColor = (
+            primaryColor[0],
+            ECMath.lerp(primaryColor[1], 0, 0.2),
+            ECMath.lerp(primaryColor[2], 255, 0.2)
+            )
+        
+    secondaryColor = (
+        (color[0] + strength * 0.5) % 1,
+        ECMath.lerp(color[1], 20, 0.8),
+        ECMath.lerp(color[2], 255, 0.9)
+        )
+    
+    accentColor = (
+        (color[0] + strength) % 1,
+        ECMath.lerp(color[1], 255, 0.8),
+        ECMath.lerp(color[2], 0, 0.3)
+        )
+    
+    if get_contrast(accentColor, textLightColor, "HSV") < 4.5:
+        accentColor = (
+            accentColor[0],
+            accentColor[1],
+            ECMath.lerp(accentColor[2], 0, 0.5)
+                        )
+    
+    backgroundColor = (
+        color[0],
+        ECMath.lerp(color[1], 0, 0.9),
+        ECMath.lerp(color[2], 255, 0.95)
+        )
+    
+
+    primaryColor = get_universal(inColorType, primaryColor, "HSV")
+    secondaryColor = get_universal(inColorType, secondaryColor, "HSV")
+    accentColor = get_universal(inColorType, accentColor, "HSV")
+    backgroundColor = get_universal(inColorType, backgroundColor, "HSV")
+    textLightColor = get_universal(inColorType, textLightColor, "HSV")
+    textDarkColor = get_universal(inColorType, textDarkColor, "HSV")
+
+    return{
+        "primary" : primaryColor,
+        "secondary" : secondaryColor,
+        "accent" : accentColor,
+        "background" : backgroundColor,
+        "textLight" : textLightColor,
+        "textDark" : textDarkColor
+    }
