@@ -182,9 +182,12 @@ def get_contrast(color1, color2, inputType: str):
     contrast = (brighter + 0.05) / (darker + 0.05)
     return contrast
 
-def get_realtimecolors_site_link(color_set: dict) -> str:
+def get_realtimecolors_site_link(color_set: dict, darkMode : bool) -> str:
     output = "https://realtimecolors.com/?colors="
-    output += color_set["textDark"].strip("#") + "-"
+    if darkMode:
+        output += color_set["textLight"].strip("#") + "-"
+    else :
+        output += color_set["textDark"].strip("#") + "-"
     output += color_set["background"].strip("#") + "-"
     output += color_set["primary"].strip("#") + "-"
     output += color_set["secondary"].strip("#") + "-"
@@ -228,8 +231,8 @@ def gen_light_color_set_analogous(color, inColorType: str, strength: float):
 
     color = get_HSV(color, inColorType)
 
-    textLightColor = ((color[0] + 0.5) % 1, 70, 255)
-    textDarkColor = ((color[0] + 0.5) % 1, 70, 50)
+    textLightColor = ((color[0] + strength) % 1, 70, 255)
+    textDarkColor = ((color[0] + strength) % 1, 70, 50)
 
     primaryColor = (
         color[0],
@@ -362,17 +365,17 @@ def gen_dark_color_set_analogous(color, inColorType: str, strength: float):
 
     color = get_HSV(color, inColorType)
 
-    textLightColor = ((color[0] + 0.5) % 1, 70, 255)
-    textDarkColor = ((color[0] + 0.5) % 1, 70, 50)
+    textLightColor = ((color[0] + strength) % 1, 20, 255)
+    textDarkColor = ((color[0] + strength) % 1, 70, 50)
 
     primaryColor = (
         color[0],
-        ECMath.lerp(color[1], 128, 0.5),
+        ECMath.lerp(color[1], 255, 0.5),
         ECMath.lerp(color[2], 255, 0.8)
         )
 
     while get_contrast(primaryColor, textDarkColor, "HSV") < 7:
-        #print("correction from : " + str(get_contrast(primaryColor, textDarkColor, "HSV")))
+        print("primary correction from : " + str(get_contrast(primaryColor, textDarkColor, "HSV")))
         primaryColor = (
             primaryColor[0],
             ECMath.lerp(primaryColor[1], 0, 0.2),
@@ -381,28 +384,31 @@ def gen_dark_color_set_analogous(color, inColorType: str, strength: float):
         
     secondaryColor = (
         (color[0] + strength * 0.5) % 1,
-        ECMath.lerp(color[1], 20, 0.8),
-        ECMath.lerp(color[2], 255, 0.9)
+        ECMath.lerp(color[1], 255, 0.8),
+        ECMath.lerp(color[2], 50, 0.9)
         )
-    
+
+    backgroundColor = (
+        color[0],
+        ECMath.lerp(color[1], 128, 0.3),
+        ECMath.lerp(color[2], 0, 0.95)
+        )
+
     accentColor = (
         (color[0] + strength) % 1,
         ECMath.lerp(color[1], 255, 0.8),
-        ECMath.lerp(color[2], 0, 0.3)
+        ECMath.lerp(color[2], 255, 0.3)
         )
     
-    if get_contrast(accentColor, textLightColor, "HSV") < 4.5:
+    while get_contrast(accentColor, backgroundColor, "HSV") < 4.5:
+        print("accent correction from : " + str(get_contrast(accentColor, backgroundColor, "HSV")))
         accentColor = (
             accentColor[0],
-            accentColor[1],
-            ECMath.lerp(accentColor[2], 0, 0.5)
+            ECMath.lerp(accentColor[1], 0, 0.3),
+            ECMath.lerp(accentColor[2], 255, 0.5)
                         )
     
-    backgroundColor = (
-        color[0],
-        ECMath.lerp(color[1], 0, 0.9),
-        ECMath.lerp(color[2], 255, 0.95)
-        )
+
     
 
     primaryColor = get_universal(inColorType, primaryColor, "HSV")
