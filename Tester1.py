@@ -15,7 +15,7 @@ def test_color(color):
 seed = 0
 
 for seed in range(100):
-    colors = EC.gen_light_color_set_analogous(EC.random_soft_color("HEX", seed), "HEX", 0.1)
+    colors = EC.gen_dark_color_set_analogous(EC.random_soft_color("HEX", seed), "HEX", 0.2)
 
     """print(colors["textLight"])
     print(colors["textDark"])
@@ -26,6 +26,6 @@ for seed in range(100):
     print()"""
 
     print(EC.random_soft_color("HEX", seed))
-    print(EC.get_realtimecolors_site_link(colors))
+    print(EC.get_realtimecolors_site_link(colors, True))
 
     #print(ECMath.random(0, 360, seed))
