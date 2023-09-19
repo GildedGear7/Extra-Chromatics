@@ -184,7 +184,7 @@ def get_contrast(color1, color2, inputType: str):
 
 def get_realtimecolors_site_link(color_set: dict, darkMode : bool) -> str:
     output = "https://realtimecolors.com/?colors="
-    if darkMode:
+    if color_set["darkMode"]:
         output += color_set["textLight"].strip("#") + "-"
     else :
         output += color_set["textDark"].strip("#") + "-"
@@ -287,7 +287,8 @@ def gen_light_color_set_analogous(color, inColorType: str, strength: float):
         "accent" : accentColor,
         "background" : backgroundColor,
         "textLight" : textLightColor,
-        "textDark" : textDarkColor
+        "textDark" : textDarkColor,
+        "darkMode" : False
     }
 
 def gen_light_color_set_complementary(color, inColorType: str):
@@ -354,7 +355,8 @@ def gen_light_color_set_complementary(color, inColorType: str):
         "accent" : accentColor,
         "background" : backgroundColor,
         "textLight" : textLightColor,
-        "textDark" : textDarkColor
+        "textDark" : textDarkColor,
+        "darkMode" : False
     }
 
 def gen_dark_color_set_analogous(color, inColorType: str, strength: float):
@@ -400,7 +402,7 @@ def gen_dark_color_set_analogous(color, inColorType: str, strength: float):
         ECMath.lerp(color[2], 255, 0.3)
         )
     
-    while get_contrast(accentColor, backgroundColor, "HSV") < 4.5:
+    while get_contrast(accentColor, textDarkColor, "HSV") < 4.5:
         print("accent correction from : " + str(get_contrast(accentColor, backgroundColor, "HSV")))
         accentColor = (
             accentColor[0],
@@ -424,5 +426,77 @@ def gen_dark_color_set_analogous(color, inColorType: str, strength: float):
         "accent" : accentColor,
         "background" : backgroundColor,
         "textLight" : textLightColor,
-        "textDark" : textDarkColor
+        "textDark" : textDarkColor,
+        "darkMode" : True
+    }
+
+def gen_dark_color_set_complementary(color, inColorType: str):
+    """returns a dictionary containing a whole color scheme \n
+    {\n
+    "primary", "secondary", "accent", "background", "textLight","textDark"\n
+    } keys."""        
+
+    color = get_HSV(color, inColorType)
+
+    textLightColor = ((color[0] + 0.5) % 1, 20, 255)
+    textDarkColor = ((color[0] + 0.5) % 1, 70, 50)
+
+    primaryColor = (
+        color[0],
+        ECMath.lerp(color[1], 255, 0.5),
+        ECMath.lerp(color[2], 255, 0.8)
+        )
+
+    while get_contrast(primaryColor, textDarkColor, "HSV") < 7:
+        print("primary correction from : " + str(get_contrast(primaryColor, textDarkColor, "HSV")))
+        primaryColor = (
+            primaryColor[0],
+            ECMath.lerp(primaryColor[1], 0, 0.2),
+            ECMath.lerp(primaryColor[2], 255, 0.2)
+            )
+        
+    secondaryColor = (
+        (color[0] + 0.05) % 1,
+        ECMath.lerp(color[1], 255, 0.8),
+        ECMath.lerp(color[2], 50, 0.9)
+        )
+
+    backgroundColor = (
+        color[0],
+        ECMath.lerp(color[1], 128, 0.3),
+        ECMath.lerp(color[2], 0, 0.95)
+        )
+
+    accentColor = (
+        (color[0] + 0.5) % 1,
+        ECMath.lerp(color[1], 255, 0.8),
+        ECMath.lerp(color[2], 255, 0.3)
+        )
+    
+    while get_contrast(accentColor, textDarkColor, "HSV") < 4.5:
+        print("accent correction from : " + str(get_contrast(accentColor, backgroundColor, "HSV")))
+        accentColor = (
+            accentColor[0],
+            ECMath.lerp(accentColor[1], 0, 0.3),
+            ECMath.lerp(accentColor[2], 255, 0.5)
+                        )
+    
+
+    
+
+    primaryColor = get_universal(inColorType, primaryColor, "HSV")
+    secondaryColor = get_universal(inColorType, secondaryColor, "HSV")
+    accentColor = get_universal(inColorType, accentColor, "HSV")
+    backgroundColor = get_universal(inColorType, backgroundColor, "HSV")
+    textLightColor = get_universal(inColorType, textLightColor, "HSV")
+    textDarkColor = get_universal(inColorType, textDarkColor, "HSV")
+
+    return{
+        "primary" : primaryColor,
+        "secondary" : secondaryColor,
+        "accent" : accentColor,
+        "background" : backgroundColor,
+        "textLight" : textLightColor,
+        "textDark" : textDarkColor,
+        "darkMode" : True
     }
