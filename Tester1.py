@@ -26,6 +26,6 @@ for seed in range(100):
     print()"""
 
     print(EC.random_soft_color("HEX", seed))
-    print(EC.get_realtimecolors_site_link(colors, True))
+    print(EC.get_realtimecolors_site_link(colors))
 
     #print(ECMath.random(0, 360, seed))

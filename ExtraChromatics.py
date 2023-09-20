@@ -145,6 +145,13 @@ def get_HEX(inputVal, inputType: str):
         )
 
 def get_universal(outputType: str, inputVal, inputType: str):
+    """
+    Returns a color of type "outputType".
+    Not recommended, unless you absolutely need it.
+
+    Though, its still better than making you own "elif" tower.
+    """
+
     if outputType == inputType:
         return inputVal
     
@@ -182,7 +189,11 @@ def get_contrast(color1, color2, inputType: str):
     contrast = (brighter + 0.05) / (darker + 0.05)
     return contrast
 
-def get_realtimecolors_site_link(color_set: dict, darkMode : bool) -> str:
+def get_realtimecolors_site_link(color_set: dict) -> str:
+    """
+    Returns a website link to 'realtimecolors.com'.
+    Here you can quickly preview generated color schemes.
+    """
     output = "https://realtimecolors.com/?colors="
     if color_set["darkMode"]:
         output += color_set["textLight"].strip("#") + "-"
