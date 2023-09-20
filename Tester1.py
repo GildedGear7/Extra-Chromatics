@@ -15,7 +15,7 @@ def test_color(color):
 seed = 0
 
 for seed in range(100):
-    colors = EC.gen_light_color_set_monochromatic(EC.random_soft_color("HEX", seed), "HEX")
+    colors = EC.gen_dark_color_set_monochromatic(EC.random_soft_color("HEX", seed), "HEX")
 
     """print(colors["textLight"])
     print(colors["textDark"])
