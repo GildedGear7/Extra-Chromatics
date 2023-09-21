@@ -13,19 +13,44 @@ def test_color(color):
 #print("EC MATH TEST")
 #print(ECMath.lpos(5, 10, 7.5))
 seed = 0
+strength = 0.3
 
 for seed in range(100):
-    colors = EC.gen_dark_color_set_monochromatic(EC.random_soft_color("HEX", seed), "HEX")
+    randomColor = EC.random_soft_color("HEX", seed)
+    print(randomColor)
+    colors = EC.gen_light_color_set_analogous(randomColor, "HEX", strength)
+    print(EC.get_realtimecolors_site_link(colors))
 
-    """print(colors["textLight"])
-    print(colors["textDark"])
-    print(colors["primary"])
-    print(colors["secondary"])
-    print(colors["accent"])
-    print(colors["background"])
-    print()"""
+    colors = EC.gen_light_color_set_complementary(randomColor, "HEX")
+    print(EC.get_realtimecolors_site_link(colors))
 
-    print(EC.random_soft_color("HEX", seed))
+    colors = EC.gen_light_color_set_monochromatic(randomColor, "HEX")
+    print(EC.get_realtimecolors_site_link(colors))
+
+
+    colors = EC.gen_dark_color_set_analogous(randomColor, "HEX", strength)
+    print(EC.get_realtimecolors_site_link(colors))
+
+    colors = EC.gen_dark_color_set_complementary(randomColor, "HEX")
+    print(EC.get_realtimecolors_site_link(colors))
+
+    colors = EC.gen_dark_color_set_monochromatic(randomColor, "HEX")
     print(EC.get_realtimecolors_site_link(colors))
 
     #print(ECMath.random(0, 360, seed))
+
+"""
+    var1 = EC.get_HSV(EC.random_true_color("HEX", seed), "HEX")
+    print(var1)
+    print(EC.get_RGB(var1, "HSV"))
+    print(EC.get_HEX(var1, "HSV"))
+    print()
+
+
+colors = EC.gen_light_color_set_analogous(EC.random_soft_color("HEX", seed), "HEX", 0.3)
+print(EC.random_soft_color("HEX", seed))
+print(EC.get_realtimecolors_site_link(colors))
+
+
+
+"""
