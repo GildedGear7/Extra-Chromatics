@@ -18,23 +18,23 @@ strength = 0.3
 for seed in range(100):
     randomColor = EC.random_soft_color("HEX", seed)
     print(randomColor)
-    colors = EC.gen_light_color_set_analogous(randomColor, "HEX", strength)
+    colors = EC.scheme_light_var1_analogous(randomColor, "HEX", strength)
     print(EC.get_realtimecolors_site_link(colors))
 
-    colors = EC.gen_light_color_set_complementary(randomColor, "HEX")
+    colors = EC.scheme_light_var1_complementary(randomColor, "HEX")
     print(EC.get_realtimecolors_site_link(colors))
 
-    colors = EC.gen_light_color_set_monochromatic(randomColor, "HEX")
+    colors = EC.scheme_light_var1_monochromatic(randomColor, "HEX")
     print(EC.get_realtimecolors_site_link(colors))
 
 
-    colors = EC.gen_dark_color_set_analogous(randomColor, "HEX", strength)
+    colors = EC.scheme_dark_var1_analogous(randomColor, "HEX", strength)
     print(EC.get_realtimecolors_site_link(colors))
 
-    colors = EC.gen_dark_color_set_complementary(randomColor, "HEX")
+    colors = EC.scheme_dark_var1_complementary(randomColor, "HEX")
     print(EC.get_realtimecolors_site_link(colors))
 
-    colors = EC.gen_dark_color_set_monochromatic(randomColor, "HEX")
+    colors = EC.scheme_dark_var1_monochromatic(randomColor, "HEX")
     print(EC.get_realtimecolors_site_link(colors))
 
     #print(ECMath.random(0, 360, seed))

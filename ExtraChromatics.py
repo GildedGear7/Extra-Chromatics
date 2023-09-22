@@ -238,7 +238,7 @@ def hue_shift(inputColor, inputType: str, shift: float):
         )
 
 
-def gen_light_color_set_analogous(color, inColorType: str, strength: float):
+def scheme_light_var1_analogous(color, inColorType: str, strength: float):
     """returns a dictionary containing a whole color scheme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
@@ -307,7 +307,7 @@ def gen_light_color_set_analogous(color, inColorType: str, strength: float):
         "darkMode" : False
     }
 
-def gen_light_color_set_complementary(color, inColorType: str):
+def scheme_light_var1_complementary(color, inColorType: str):
     """returns a dictionary containing a whole color scheme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
@@ -375,7 +375,7 @@ def gen_light_color_set_complementary(color, inColorType: str):
         "darkMode" : False
     }
 
-def gen_light_color_set_monochromatic(color, inColorType: str):
+def scheme_light_var1_monochromatic(color, inColorType: str):
     """returns a dictionary containing a whole color scheme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
@@ -444,7 +444,7 @@ def gen_light_color_set_monochromatic(color, inColorType: str):
     }
 
 
-def gen_dark_color_set_analogous(color, inColorType: str, strength: float):
+def scheme_dark_var1_analogous(color, inColorType: str, strength: float):
     """returns a dictionary containing a whole color scheme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
@@ -516,7 +516,7 @@ def gen_dark_color_set_analogous(color, inColorType: str, strength: float):
         "darkMode" : True
     }
 
-def gen_dark_color_set_complementary(color, inColorType: str):
+def scheme_dark_var1_complementary(color, inColorType: str):
     """returns a dictionary containing a whole color scheme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
@@ -587,7 +587,7 @@ def gen_dark_color_set_complementary(color, inColorType: str):
         "darkMode" : True
     }
 
-def gen_dark_color_set_monochromatic(color, inColorType: str):
+def scheme_dark_var1_monochromatic(color, inColorType: str):
     """returns a dictionary containing a whole color scheme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
