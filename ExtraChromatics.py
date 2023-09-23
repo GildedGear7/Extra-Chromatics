@@ -555,8 +555,8 @@ def scheme_dark_var1_complementary(color, inColorType: str):
 
     accentColor = (
         (color[0] + 180) % 360,
-        ECMath.lerp(color[1], 100, 0.8),
-        ECMath.lerp(color[2], 100, 0.3)
+        ECMath.lerp(color[1], 80, 0.6),
+        ECMath.lerp(color[2], 30, 0.3)
         )
     
     #if contrast is to low
