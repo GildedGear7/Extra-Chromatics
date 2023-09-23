@@ -402,7 +402,7 @@ def scheme_light_var1_monochromatic(color, inColorType: str):
         
     secondaryColor = (
         color[0],
-        ECMath.lerp(color[1], 20, 0.8),
+        ECMath.lerp(color[1], 10, 0.8),
         ECMath.lerp(color[2], 100, 0.9)
         )
     
@@ -453,7 +453,7 @@ def scheme_dark_var1_analogous(color, inColorType: str, strength: float):
     color = get_HSV(color, inColorType)
     strength *= 180
 
-    textLightColor = ((color[0] + strength) % 360, 20, 100)
+    textLightColor = ((color[0] + strength) % 360, 10, 100)
     textDarkColor = ((color[0] + strength) % 360, 30, 20)
 
     primaryColor = (
@@ -524,7 +524,7 @@ def scheme_dark_var1_complementary(color, inColorType: str):
 
     color = get_HSV(color, inColorType)
 
-    textLightColor = ((color[0] + 180) % 360, 20, 100)
+    textLightColor = ((color[0] + 180) % 360, 10, 100)
     textDarkColor = ((color[0] + 180) % 360, 30, 20)
 
     primaryColor = (
@@ -559,12 +559,22 @@ def scheme_dark_var1_complementary(color, inColorType: str):
         ECMath.lerp(color[2], 100, 0.3)
         )
     
+    #if contrast is to low
     while get_contrast(accentColor, textDarkColor, "HSV") < 4.5:
         #print("accent correction from : " + str(get_contrast(accentColor, backgroundColor, "HSV")))
         accentColor = (
             accentColor[0],
             ECMath.lerp(accentColor[1], 0, 0.3),
             ECMath.lerp(accentColor[2], 100, 0.5)
+                        )
+        
+    #if contrast is too high
+    while get_contrast(accentColor, backgroundColor, "HSV") > 10:
+        #print("accent correction from : " + str(get_contrast(accentColor, backgroundColor, "HSV")))
+        accentColor = (
+            accentColor[0] + 10,
+            ECMath.lerp(accentColor[1], 0, 0.3),
+            ECMath.lerp(accentColor[2], 50, 0.5)
                         )
     
 

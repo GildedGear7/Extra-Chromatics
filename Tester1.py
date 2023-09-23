@@ -15,8 +15,9 @@ def test_color(color):
 seed = 0
 strength = 0.3
 
-for seed in range(100):
+for seed in range(1):
     randomColor = EC.random_soft_color("HEX", seed)
+    randomColor = "#0000FF"
     print(randomColor)
     colors = EC.scheme_light_var1_analogous(randomColor, "HEX", strength)
     print(EC.get_realtimecolors_site_link(colors))
