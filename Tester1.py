@@ -10,35 +10,39 @@ def test_color(color):
     print(EC.get_HEX(color, "HEX"))
     print(EC.get_HEX(EC.get_HSV(color, "HEX"), "HSV"))
 
-#print("EC MATH TEST")
-#print(ECMath.lpos(5, 10, 7.5))
-seed = 0
-strength = -0.3
+    #print("EC MATH TEST")
+    #print(ECMath.lpos(5, 10, 7.5))
+    seed = 0
+    strength = -0.3
 
-for seed in range(1):
-    randomColor = EC.random_soft_color("HEX", seed)
-    randomColor = "#FFEA00"
-    print(randomColor)
-    colors = EC.gui_theme_light_var1_analogous(randomColor, "HEX", strength)
-    print(EC.get_realtimecolors_site_link(colors))
+    for seed in range(1):
+        randomColor = EC.random_soft_color("HEX", seed)
+        randomColor = "#FFEA00"
+        print(randomColor)
+        colors = EC.gui_theme_light_var1_analogous(randomColor, "HEX", strength)
+        print(EC.get_realtimecolors_site_link(colors))
 
-    colors = EC.gui_theme_light_var1_complementary(randomColor, "HEX")
-    print(EC.get_realtimecolors_site_link(colors))
+        colors = EC.gui_theme_light_var1_complementary(randomColor, "HEX")
+        print(EC.get_realtimecolors_site_link(colors))
 
-    colors = EC.gui_theme_light_var1_monochromatic(randomColor, "HEX")
-    print(EC.get_realtimecolors_site_link(colors))
+        colors = EC.gui_theme_light_var1_monochromatic(randomColor, "HEX")
+        print(EC.get_realtimecolors_site_link(colors))
 
 
-    colors = EC.gui_theme_dark_var1_analogous(randomColor, "HEX", strength)
-    print(EC.get_realtimecolors_site_link(colors))
+        colors = EC.gui_theme_dark_var1_analogous(randomColor, "HEX", strength)
+        print(EC.get_realtimecolors_site_link(colors))
 
-    colors = EC.gui_theme_dark_var1_complementary(randomColor, "HEX")
-    print(EC.get_realtimecolors_site_link(colors))
+        colors = EC.gui_theme_dark_var1_complementary(randomColor, "HEX")
+        print(EC.get_realtimecolors_site_link(colors))
 
-    colors = EC.gui_theme_dark_var1_monochromatic(randomColor, "HEX")
-    print(EC.get_realtimecolors_site_link(colors))
+        colors = EC.gui_theme_dark_var1_monochromatic(randomColor, "HEX")
+        print(EC.get_realtimecolors_site_link(colors))
 
-    #print(ECMath.random(0, 360, seed))
+        #print(ECMath.random(0, 360, seed))
+
+color = "#064B1E"
+
+print(EC.palette_via_HSV(color, "HEX", 5))
 
 """
     var1 = EC.get_HSV(EC.random_true_color("HEX", seed), "HEX")

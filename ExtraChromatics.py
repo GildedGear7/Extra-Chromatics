@@ -668,3 +668,34 @@ def gui_theme_dark_var1_monochromatic(color, inColorType: str):
         "textDark" : textDarkColor,
         "darkMode" : True
     }
+
+
+def palette_via_HSV(color, inputType: str, colorAmount: int):
+    """"""
+    pallette = []
+    color = get_HSV(color, inputType)
+
+    stepSize = colorAmount
+
+    hue = color[0]
+    saturation = color[1]
+    value = color[2]
+
+    
+    i = 0
+    while i < colorAmount:
+        newColor = (
+            hue + (stepSize * i),
+            saturation - (stepSize * i),
+            value + (stepSize * i)
+        )
+
+        pallette.append(
+            get_universal(inputType, newColor, "HSV")
+        )
+
+        i += 1
+
+
+
+    return pallette
