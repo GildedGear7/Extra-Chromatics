@@ -196,13 +196,14 @@ def get_contrast(color1, color2, inputType: str):
 def get_realtimecolors_site_link(color_set: dict) -> str:
     """
     Returns a website link to 'realtimecolors.com'.
-    Here you can quickly preview generated color schemes.
+    Here you can quickly preview generated color gui_themes.
     """
     output = "https://realtimecolors.com/?colors="
     if color_set["darkMode"]:
         output += color_set["textLight"].strip("#") + "-"
     else :
         output += color_set["textDark"].strip("#") + "-"
+    
     output += color_set["background"].strip("#") + "-"
     output += color_set["primary"].strip("#") + "-"
     output += color_set["secondary"].strip("#") + "-"
@@ -238,8 +239,8 @@ def hue_shift(inputColor, inputType: str, shift: float):
         )
 
 
-def scheme_light_var1_analogous(color, inColorType: str, strength: float):
-    """returns a dictionary containing a whole color scheme \n
+def gui_theme_light_var1_analogous(color, inColorType: str, strength: float):
+    """returns a dictionary containing a whole color gui_theme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
     } keys."""        
@@ -307,8 +308,8 @@ def scheme_light_var1_analogous(color, inColorType: str, strength: float):
         "darkMode" : False
     }
 
-def scheme_light_var1_complementary(color, inColorType: str):
-    """returns a dictionary containing a whole color scheme \n
+def gui_theme_light_var1_complementary(color, inColorType: str):
+    """returns a dictionary containing a whole color gui_theme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
     } keys."""        
@@ -375,8 +376,8 @@ def scheme_light_var1_complementary(color, inColorType: str):
         "darkMode" : False
     }
 
-def scheme_light_var1_monochromatic(color, inColorType: str):
-    """returns a dictionary containing a whole color scheme \n
+def gui_theme_light_var1_monochromatic(color, inColorType: str):
+    """returns a dictionary containing a whole color gui_theme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
     } keys."""        
@@ -444,8 +445,8 @@ def scheme_light_var1_monochromatic(color, inColorType: str):
     }
 
 
-def scheme_dark_var1_analogous(color, inColorType: str, strength: float):
-    """returns a dictionary containing a whole color scheme \n
+def gui_theme_dark_var1_analogous(color, inColorType: str, strength: float):
+    """returns a dictionary containing a whole color gui_theme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
     } keys."""        
@@ -516,8 +517,8 @@ def scheme_dark_var1_analogous(color, inColorType: str, strength: float):
         "darkMode" : True
     }
 
-def scheme_dark_var1_complementary(color, inColorType: str):
-    """returns a dictionary containing a whole color scheme \n
+def gui_theme_dark_var1_complementary(color, inColorType: str):
+    """returns a dictionary containing a whole color gui_theme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
     } keys."""        
@@ -597,8 +598,8 @@ def scheme_dark_var1_complementary(color, inColorType: str):
         "darkMode" : True
     }
 
-def scheme_dark_var1_monochromatic(color, inColorType: str):
-    """returns a dictionary containing a whole color scheme \n
+def gui_theme_dark_var1_monochromatic(color, inColorType: str):
+    """returns a dictionary containing a whole color gui_theme \n
     {\n
     "primary", "secondary", "accent", "background", "textLight","textDark"\n
     } keys."""        
