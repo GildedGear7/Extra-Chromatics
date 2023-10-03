@@ -675,19 +675,20 @@ def palette_via_HSV(color, inputType: str, colorAmount: int):
     pallette = []
     color = get_HSV(color, inputType)
 
-    stepSize = colorAmount
+    stepSize = 1/colorAmount
+    stepSize *= 90
 
     hue = color[0]
     saturation = color[1]
     value = color[2]
 
     
-    i = 0
-    while i < colorAmount:
+    i = 1
+    while i < colorAmount + 1:
         newColor = (
-            hue + (stepSize * i),
-            saturation - (stepSize * i),
-            value + (stepSize * i)
+            (hue + (stepSize * i * 0.3) - 10) % 360,
+            100 - (stepSize * i),
+            (stepSize * i)
         )
 
         pallette.append(
@@ -695,7 +696,5 @@ def palette_via_HSV(color, inputType: str, colorAmount: int):
         )
 
         i += 1
-
-
 
     return pallette

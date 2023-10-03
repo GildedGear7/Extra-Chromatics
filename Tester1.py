@@ -40,7 +40,7 @@ def test_color(color):
 
         #print(ECMath.random(0, 360, seed))
 
-color = "#064B1E"
+color = "#FF0000"
 
 print(EC.palette_via_HSV(color, "HEX", 5))
 
