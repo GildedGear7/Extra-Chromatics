@@ -17,7 +17,7 @@ class ECMath():
         seed = ((seed * 5656678211) % 44571) ^ 3
         return minVal + (seed % (maxVal - minVal + 1))
 
-
+#color spaces here
 def get_RGB(inputVal, inputType: str):
     """
     Value ranges are : \n
@@ -170,11 +170,12 @@ def get_universal(outputType: str, inputVal, inputType: str):
             print("ERROR get_universal() Invalid output type : " + outputType)
             return inputVal
 
-
+#other functions
 def get_luminance(inputColor, inputType: str):
     inputColor = get_RGB(inputColor, inputType)
     #Calculate relative luminance (Y) for a given RGB color.
-    inputColor = [x / 255.0 for x in inputColor]  # Normalize RGB values to the range [0, 1]
+    # Normalize RGB values to the range <0, 1>
+    inputColor = [x / 255.0 for x in inputColor]  
     r = inputColor[0]
     g = inputColor[1]
     b = inputColor[2]
@@ -228,7 +229,7 @@ def random_soft_color(outputType:str, seed: int):
             ECMath.random(40, 100, seed + 2)
         ), "HSV")
 
-
+#color operations
 def hue_shift(inputColor, inputType: str, shift: float):
     inputColor = get_HSV(inputColor, inputType)
 
@@ -238,7 +239,8 @@ def hue_shift(inputColor, inputType: str, shift: float):
         "HSV"
         )
 
-
+#theme generator
+#light mode
 def gui_theme_light_var1_analogous(color, inColorType: str, strength: float):
     """returns a dictionary containing a whole color gui_theme \n
     {\n
@@ -444,7 +446,7 @@ def gui_theme_light_var1_monochromatic(color, inColorType: str):
         "darkMode" : False
     }
 
-
+#dark mode
 def gui_theme_dark_var1_analogous(color, inColorType: str, strength: float):
     """returns a dictionary containing a whole color gui_theme \n
     {\n
@@ -669,7 +671,7 @@ def gui_theme_dark_var1_monochromatic(color, inColorType: str):
         "darkMode" : True
     }
 
-
+#palette generators
 def palette_via_HSV(color, inputType: str, colorAmount: int):
     """"""
     pallette = []
