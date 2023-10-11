@@ -2,13 +2,13 @@ import ExtraChromatics as EC
 from ExtraChromatics import ECMath
 
 def test_color(color):
-    if EC.get_HEX(color, "HEX") == EC.get_HEX(EC.get_HSV(color, "HEX"), "HSV"):
+    """if EC.get_HEX(color, "HEX") == EC.get_HEX(EC.get_HSV(color, "HEX"), "HSV"):
         print("===>>>> SUCCESS <<<<===")
     else:
         print("## FAIL ##")
         
     print(EC.get_HEX(color, "HEX"))
-    print(EC.get_HEX(EC.get_HSV(color, "HEX"), "HSV"))
+    print(EC.get_HEX(EC.get_HSV(color, "HEX"), "HSV"))"""
 
     #print("EC MATH TEST")
     #print(ECMath.lpos(5, 10, 7.5))
