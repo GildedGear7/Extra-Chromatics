@@ -12,33 +12,33 @@ def test_color(color):
 
     #print("EC MATH TEST")
     #print(ECMath.lpos(5, 10, 7.5))
-    seed = 0
-    strength = -0.3
+seed = 0
+strength = -0.3
 
-    for seed in range(1):
-        randomColor = EC.random_soft_color("HEX", seed)
-        randomColor = "#FFEA00"
-        print(randomColor)
-        colors = EC.gui_theme_light_var1_analogous(randomColor, "HEX", strength)
-        print(EC.get_realtimecolors_site_link(colors))
+for seed in range(1):
+    randomColor = EC.random_soft_color("HEX", seed)
+    randomColor = "#00FF62"
+    print(randomColor)
+    colors = EC.gui_theme_light_var1_analogous(randomColor, "HEX", strength)
+    print(EC.get_realtimecolors_site_link(colors))
 
-        colors = EC.gui_theme_light_var1_complementary(randomColor, "HEX")
-        print(EC.get_realtimecolors_site_link(colors))
+    colors = EC.gui_theme_light_var1_complementary(randomColor, "HEX")
+    print(EC.get_realtimecolors_site_link(colors))
 
-        colors = EC.gui_theme_light_var1_monochromatic(randomColor, "HEX")
-        print(EC.get_realtimecolors_site_link(colors))
+    colors = EC.gui_theme_light_var1_monochromatic(randomColor, "HEX")
+    print(EC.get_realtimecolors_site_link(colors))
 
 
-        colors = EC.gui_theme_dark_var1_analogous(randomColor, "HEX", strength)
-        print(EC.get_realtimecolors_site_link(colors))
+    colors = EC.gui_theme_dark_var1_analogous(randomColor, "HEX", strength)
+    print(EC.get_realtimecolors_site_link(colors))
 
-        colors = EC.gui_theme_dark_var1_complementary(randomColor, "HEX")
-        print(EC.get_realtimecolors_site_link(colors))
+    colors = EC.gui_theme_dark_var1_complementary(randomColor, "HEX")
+    print(EC.get_realtimecolors_site_link(colors))
 
-        colors = EC.gui_theme_dark_var1_monochromatic(randomColor, "HEX")
-        print(EC.get_realtimecolors_site_link(colors))
+    colors = EC.gui_theme_dark_var1_monochromatic(randomColor, "HEX")
+    print(EC.get_realtimecolors_site_link(colors))
 
-        #print(ECMath.random(0, 360, seed))
+    #print(ECMath.random(0, 360, seed))
 
 color = "#FF0000"
 
